@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Qwitcher+Grypen:wght@400;700&display=swap');
+
+#icon {
+    width: 32px;
+    height: 32px;
+}
+.cart-icon {
+    transition: all 0.5s ease; 
+}
+
+.cart-icon:hover {
+    opacity: 0.7; 
+    filter: gris;
+}
+a {
+    text-decoration: none;
+    color: hsl(233, 94%, 7%); 
+}
+a:hover{
+    color: #ccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    body {
+        font-family: "Roboto Slab", sans-serif;
+        background-color: #f6c8c1;
+        color: hsl(233, 94%, 7%);
+        background-image: url("pics/Personal Brand Portfolio Website in Light Pink White Black Anti-Design Style.png");
+        background-size: 100%; 
+        background-repeat:repeat-2; 
+        min-height: 100vh; 
+        position: relative;
+    }
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(255, 255, 255, 0.4); 
+        z-index: -1;
+        box-sizing: border-box; 
+    
+    }
+.categories {
+    margin: 70px 0;
+    text-align: center;
+}
+
+
+.small-container {
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+
+.row {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+}
+
+
+.col-3 {
+    flex: 0 1 calc(33.333% - 20px); 
+    max-width: 200px; 
+    margin: 10px; 
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+
+.col-3 img {
+    width: 100%; 
+    height: auto; 
+    max-height: 300px; 
+    object-fit: cover; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.col-3 img:hover {
+    transform: scale(1.05);
+}
+
+
+.book-info {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+.book-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-family: 'Roboto Slab', sans-serif;
+    color: hsl(233, 94%, 7%);
+}
+
+
+.book-info p {
+    font-size: 1rem;
+    color: hsl(0, 0%, 47%);
+    margin-bottom: 8px;
+    opacity: 1; 
+}
+
+.book-details {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: #f8f9fa; 
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 101;
+    color: hsl(233, 94%, 7%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    overflow-y: auto; 
+}
+
+
+.book-details p:last-of-type {
+    margin-bottom: 40px; 
+}
+
+.btn {
+    background-color: #f6c8c1; 
+    color: white; 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    margin-top: 20px; 
+    text-decoration: none; 
+}
+
+.btn:hover {
+    background-color: #ccc; 
+}
+
+
+
+.book-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); 
+    z-index: 100;
+    backdrop-filter: blur(5px); 
+}
+
+.book-overlay.active {
+    display: block; 
+}
+
+.book-details.active {
+    display: block; 
+}
+
+
+
+
+#bookTitle {
+    font-size:xx-large; 
+    margin-bottom: 10px; 
+    font-family: "Great Vibes";
+    text-align: center;
+}
+
+#bookPrice {
+    font-size: 20px; 
+    color:hsl(0, 0%, 47%);  
+    margin-bottom: 15px;
+    text-align: center; 
+}
+
+
+
+
+.close-btn {
+    font-size: 24px; 
+    color:  #ccc; 
+    cursor: pointer;
+    text-align: right; 
+    position: absolute; 
+    top: 10px;
+    right: 20px;
+}
+
+
+
+.row.row-2 {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    margin: 20px 0; 
+}
+
+
+.row.row-2 h2 {
+    text-align: center; 
+    font-size: xxx-large;
+    color: hsl(233, 94%, 7%);
+    font-family: "Great Vibes";
+
+}
+
+
+.sorting-container {
+    margin-top: 10px; 
+}
+
+.sorting-container select {
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    color: hsl(233, 94%, 7%);
+    font-family: "Roboto Slab", sans-serif;
+    background-color: white;
+    display: block; 
+    border-color: #fff;
+}
+/* footer */
+  
+.footer {
+    position: relative; 
+    background-image: url('https://thesagittariusbooksblog.wordpress.com/wp-content/uploads/2016/09/14349169_752468691559409_373260679_n.gif');
+    color: hsl(233, 94%, 7%);
+    font-size: 14px;
+    padding: 60px 0 20px;
+    z-index: 1; 
+    background-size: 100%;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5); 
+    z-index: -1;
+    background-size: cover; 
+    background-position: center;
+}
+ .footer h3 {
+    color: hsl(233, 94%, 7%);
+    margin-bottom: 5px;
+    font-size: larger;
+  }
+  
+  .footer-col-2, .footer-col-3,.footer-col-4 {
+    min-width: 250px;
+    margin-bottom: 20px;
+  }
+  .footer-col-2 {
+    flex: 1;
+    text-align: center;
+  }
+  .footer-col-3,.footer-col-4 {
+    flex-basis: 12%;
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  .copyright {
+    text-align: center;
+    color:hsl(233, 94%, 7%) ;
+  }
+  .logo2{
+    font-family: "Great Vibes";
+    font-size:40px; 
+    color:hsl(233, 94%, 7%); 
+  }

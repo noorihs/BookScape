@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <link id="icon" rel="icon" type="image/png" href="https://i.ibb.co/PNjjx3y/cart.png">
+    <link rel="stylesheet" href="cart.css">
+    <script src="cart.js" defer></script>
+</head>
+<body>
+    <div class="container cart-page">
+        <div class="sticker-container">
+            <img src="pics/book-lover.png" alt="Sticker Book 1" class="sticker">
+            <h1>My Cart</h1>
+            <img src="pics/book-lover (2).png" alt="Sticker Book 1" class="sticker">
+        </div>
+        
+        <table id="cartTable">
+            <tr>
+                <th>Book Title</th>
+                <th>Quantity</th>
+                <th>Price (DZD)</th>
+            
+            </tr>
+            <tbody id="cartItems"></tbody> <!-- Articles du panier -->
+        </table>
+       
+
+        <div class="total-price">
+            <h2>Total Price</h2>
+          
+
+            <table id="totalPriceTable">
+                <tr>
+                    <td>Subtotal</td>
+                    <td id="subtotal">0.00 DZD</td>
+                </tr>
+                <tr>
+                    <td>Delivery Price</td>
+                    <td id="tax">0.00 DZD</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td id="total">0.00 DZD</td>
+                </tr>
+            </table>
+        </div>
+        <div class="buy-button-container">
+            <button id="buyButton">Buy</button>
+        </div>
+    </div>
+    
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cartItemsContainer = document.getElementById('cartItems');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function calculateTotals() {
+            let subtotal = 0;
+            cart.forEach(book => {
+                subtotal += book.price * book.quantity;
+            });
+            const tax = 500; 
+            const total = subtotal + tax;
+
+            document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} DZD`;
+            document.getElementById('tax').textContent = `${tax.toFixed(2)} DZD`;
+            document.getElementById('total').textContent = `${total.toFixed(2)} DZD`;
+        }
+
+        function displayCart() {
+            cartItemsContainer.innerHTML = ''; 
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<tr><td colspan="4">Your cart is empty</td></tr>';
+                return;
+            }
+
+            cart.forEach((book, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${book.name}</td>
+                    <td>
+    <button class="quantity-btn" data-index="${index}" data-action="decrease">-</button>
+    <span class="quantity-text">${book.quantity}</span>
+    <button class="quantity-btn" data-index="${index}" data-action="increase">+</button>
+
+                    </td>
+                    <td>${(book.price * book.quantity).toFixed(2)} DZD</td>
+                    <td><button class="remove-btn" data-index="${index}">Remove</button></td>
+                `;
+                cartItemsContainer.appendChild(row);
+            });
+
+            calculateTotals();
+            addRemoveEventListeners();
+            addQuantityEventListeners();
+        }
+
+        function addRemoveEventListeners() {
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const index = this.dataset.index;
+                    cart.splice(index, 1); 
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    displayCart(); 
+                });
+            });
+        }
+
+        function addQuantityEventListeners() {
+            const quantityButtons = document.querySelectorAll('.quantity-btn');
+            quantityButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const index = this.dataset.index;
+                    const action = this.dataset.action;
+
+                    if (action === 'increase') {
+                        cart[index].quantity += 1;
+                    } else if (action === 'decrease' && cart[index].quantity > 1) {
+                        cart[index].quantity -= 1;
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart)); 
+                    displayCart(); 
+                });
+            });
+        }
+
+        displayCart();
+    });
+    document.getElementById('buyButton').addEventListener('click', function() {
+        window.location.href = 'account.html'; 
+    });
+    
+    </script>
+    
+  
+</body>
+</html>

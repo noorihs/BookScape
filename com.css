@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Qwitcher+Grypen:wght@400;700&display=swap');
+
+#icon {
+    width: 32px;
+    height: 32px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto Slab", sans-serif;
+    background-image: url("pics/Personal Brand Portfolio Website in Light Pink White Black Anti-Design Style(2).png");
+    background-size: 100%; 
+    background-repeat:repeat-2; 
+    min-height: 100vh; 
+    position: relative;
+}
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(255, 255, 255, 0.4); 
+  z-index: -1;
+  box-sizing: border-box; 
+}
+.search {
+
+  position: absolute;
+  top: 20px; 
+  right: 20px; 
+  display: flex; 
+  align-items: center; 
+  background-color: rgba(255, 255, 255, 0.7); 
+  border-radius: 20px; 
+  padding: 5px 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  transition: background-color 0.3s; 
+  z-index: 10; 
+}
+
+
+.search:hover {
+  background-color: rgba(255, 255, 255, 0.9); 
+}
+
+.search input {
+  font-family:"Roboto Slab";
+  border: none; 
+  outline: none; 
+  padding: 5px; 
+  font-size: 16px; 
+  width: 200px;
+  background-color: transparent;
+}
+
+.search ion-icon {
+    margin-left: 15px; 
+    cursor: pointer; 
+    color: hsl(240, 11%, 12%); 
+}
+
+.logo {
+    font-family: "Great Vibes";
+    font-size:55px; 
+    color:hsl(233, 94%, 7%); 
+}
+#slogan{
+    font-family: "Roboto Slab";
+ 
+}
+/* Style pour la citation */
+#quote {
+  font-size: 30px;
+  font-family: 'Great Vibes', serif;
+  color: hsl(233, 94%, 7%);
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typewriter 10s steps(60, end) forwards;
+  border-right: 2px solid hsl(233, 94%, 7%);
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+@keyframes typewriter {
+  0% {
+      width: 0;
+  }
+  100% {
+      width: 100%;
+  }
+}
+
+/* Animation du curseur */
+#quote::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.5rem;
+  background: hsl(233, 94%, 7%);
+  animation: blink 1s infinite;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 50% {
+      opacity: 1;
+  }
+  51%, 100% {
+      opacity: 0;
+  }
+}
+
+
+#author {
+  font-family: 'Great Vibes', serif;
+  font-size: 30px;
+  color: hsl(233, 94%, 7%);
+  opacity: 0;
+  text-align: center;
+  margin-top: 10px;
+  animation: fadeIn 2s forwards;
+  animation-delay: 10s; 
+}
+
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: relative; 
+    z-index: 2; 
+}
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.cart-icon {
+    transition: all 0.5s ease; 
+}
+
+.cart-icon:hover {
+    opacity: 0.7; 
+    filter: gris;
+}
+a {
+    text-decoration: none;
+    color: hsl(233, 94%, 7%); 
+}
+a:hover{
+    color: #ccc;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.header {
+    background-image: url('https://thesagittariusbooksblog.wordpress.com/wp-content/uploads/2016/09/14349169_752468691559409_373260679_n.gif'); /* Image de fond */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    min-height: 100vh;
+    position: relative; 
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.4); 
+    z-index: 1;
+}
+.row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center; 
+    position: relative; 
+    z-index: 2; 
+    text-align: center; 
+}
+
+.col-2 h1 {
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+    color:hsl(233, 94%, 7%); 
+    
+}
+
+.col-2 p {
+    font-size: larger;
+    color:hsl(233, 94%, 7%); 
+}
+
+.btn {
+    display: inline-block;
+    color: hsl(233, 94%, 7%); 
+    padding: 8px 20px; 
+    margin: 10px auto; 
+    border-radius: 30px; 
+    font-size: 16px; 
+    transition: background 0.5s ease; 
+    background-color: transparent; 
+    text-align: center; 
+    cursor: pointer; 
+}
+
+.btn:hover {
+    background: #ccc;
+}
+
+.menu-icon {
+    cursor: pointer;
+    margin-right: 15px; 
+}
+
+.cart-icon {
+    color: hsl(233, 94%, 7%);; 
+    transition: color 0.3s; 
+}
+
+.cart-icon:hover {
+    color: hsl(233, 94%, 7%); 
+}
+
+
+
+.categories {
+  margin: 40px 0; 
+  padding: 0; 
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: flex-start;  
+
+
+}
+
+.small-container {
+  max-width: 1080px;
+  margin: 20px auto;
+  padding-left: 25px;
+  padding-right: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+ 
+}
+.small-container >h1{
+  font-family: "Great Vibes";
+  font-size: xxx-large;
+ 
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+
+}
+.row >h1{
+  font-family: "Great Vibes";
+  font-size: xxx-large;
+}
+.col-3 {
+  flex-basis: 30%;
+  min-width: 250px;
+  margin-bottom: 30px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+
+.col-3 img {
+  width: 200px; 
+  height: 300px; 
+  object-fit: cover; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.col-3 img:hover {
+  transform: scale(1.05);
+}
+
+
+.book-info {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.book-info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-family: 'Roboto Slab', sans-serif;
+  color: hsl(233, 94%, 7%);
+}
+
+.book-info p {
+  font-size: 1rem;
+  color: hsl(0, 0%, 47%);
+  margin-bottom: 8px;
+}
+
+
+.book-info .price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color:hsl(233, 94%, 7%) ;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.col-3:hover .price {
+  opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+  .col-3 {
+      flex-basis: 45%;
+  }
+
+  .col-3 img {
+      width: 150px;
+      height: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-3 {
+      flex-basis: 100%;
+  }
+
+  .col-3 img {
+      width: 100%;
+      height: auto;
+  }
+}
+
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ffffff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.col-3:hover .price {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .col-3 {
+      flex-basis: 45%;
+  }
+
+  .col-3 img {
+      width: 150px;
+      height: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-3 {
+      flex-basis: 100%;
+  }
+
+  .col-3 img {
+      width: 100%;
+      height: auto;
+  }
+}
+
+.more-btn-container {
+  text-align: center;
+  margin-top: 5px;  
+ 
+}
+
+.btn-more {
+  background: #fbfcfd; 
+  display: inline-block; 
+  color: hsl(233, 94%, 7%); 
+  padding: 8px 20px; 
+  margin: 2px auto;
+  border-radius: 30px;
+  font-size: 16px; 
+  transition: background 0.5s ease; 
+  text-align: center; 
+  cursor: pointer; 
+
+ 
+}
+
+.btn-more:hover {
+  background: #ccc; 
+  color: hsl(233, 94%, 7%); 
+}
+
+  .offer {
+    padding: 20px; 
+}
+
+.offer-img {
+    width: 100%; 
+    height: auto; 
+    max-width: 600px; 
+    border-radius: 10px;
+    object-fit: cover; 
+}
+.col-2 {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 20px; 
+}
+.col-2>h1{
+    font-family:"Great Vibes" ;
+    color:hsl(233, 94%, 7%);
+}
+.col-2>.btn{
+    background: #fbfcfd;
+    color:hsl(233, 94%, 7%) ;
+}
+.col-2>.btn:hover{
+    background-color: #ccc ;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+
+  
+.Authors {
+    margin: 100px auto;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    margin-top: 40px; 
+}
+
+.col-5 {
+    margin: 10px; 
+    text-align: center;
+    flex: 1 1 200px; 
+    max-width: 220px; 
+}
+
+.col-5 img {
+    width: 100%; 
+    height: auto; 
+    filter: grayscale(60%); 
+    transition: filter 0.5s; 
+}
+
+.col-5 img:hover {
+    filter: grayscale(0);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: hsl(233, 94%, 7%);
+    text-align: center;
+    width: 100%; 
+}
+
+.author-name {
+    margin-top: 10px; 
+    font-weight: bold; 
+    color: hsl(233, 94%, 7%);
+    font-family: "Great Vibes";
+    font-size: x-large;
+}
+
+
+
+  /* footer */
+  
+  .footer {
+    position: relative; 
+    background-image: url('https://thesagittariusbooksblog.wordpress.com/wp-content/uploads/2016/09/14349169_752468691559409_373260679_n.gif');
+    color: hsl(233, 94%, 7%);
+    font-size: 14px;
+    padding: 60px 0 20px;
+    z-index: 1; 
+    background-size: 100%;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5); 
+    z-index: -1;
+    background-size: cover; 
+    background-position: center;
+}
+  .footer h3 {
+    color: hsl(233, 94%, 7%);
+    margin-bottom: 5px;
+    font-size: larger;
+  }
+  
+  .footer-col-2, .footer-col-3,.footer-col-4 {
+    min-width: 250px;
+    margin-bottom: 20px;
+  }
+  .footer-col-2 {
+    flex: 1;
+    text-align: center;
+  }
+  .footer-col-3,.footer-col-4 {
+    flex-basis: 12%;
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  .copyright {
+    text-align: center;
+    color:hsl(233, 94%, 7%) ;
+  }
+  .logo2{
+    font-family: "Great Vibes";
+    font-size:40px; 
+    color:hsl(233, 94%, 7%); 
+  }
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+  

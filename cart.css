@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Qwitcher+Grypen:wght@400;700&display=swap');
+
+body {
+    background-color: ##fce3ed;
+}
+
+#icon {
+    width: 30px;
+    height: 30px;
+}
+
+
+/* Container for the cart */
+.container.cart-page {
+    max-width: 1080px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h1 {
+    font-family: "Great Vibes";
+    font-size: xxx-large;
+    text-align: center;
+    color: hsl(233, 94%, 7%);
+    margin-bottom: 20px;
+    margin: 20px 0;
+}
+
+/* Styling for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: "Roboto Slab", sans-serif;
+    color: hsl(233, 94%, 7%);
+    text-align: center;
+}
+
+/* Table headers */
+th {
+   
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Roboto Slab", sans-serif;
+    text-align: center;
+}
+
+#cartItems{
+    font-family:"Roboto Slab"; 
+    font-size:large;
+    text-align: center;
+    color: hsl(233, 94%, 7%);
+
+}
+/* Table rows */
+td {
+    padding: 15px;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc; 
+}
+
+/* Centering total price section */
+.total-price {
+    margin-top: 20px;
+    font-size:large;
+    text-align: center;
+    color: hsl(233, 94%, 7%);
+    font-family: "Roboto Slab", sans-serif;
+}
+
+.total-price table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin: auto; 
+}
+
+.total-price td {
+    padding: 10px;
+    font-size: 1.2rem;
+    text-align: center; 
+}
+
+.total-price tr td:first-child {
+    font-weight: bold; 
+}
+
+.remove-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+#total{
+    color: #ff4d4d;
+}
+.remove-btn:hover {
+    background-color: #ff4d4d; 
+}
+/* Styles pour les boutons de quantité */
+.quantity-btn {
+    background-color: transparent; 
+    border: none; 
+    color: hsl(233, 94%, 7%); 
+    font-size: 1.2rem; 
+    cursor: pointer; 
+    transition: color 0.3s; 
+}
+.quantity-text {
+    margin: 0 10px; 
+    font-size: 1.5rem; 
+}
+
+.quantity-btn:hover {
+    color: #ccc; 
+}
+
+
+.quantity-btn:focus {
+    outline: none; 
+}
+/* Conteneur pour le bouton d'achat */
+.buy-button-container {
+    text-align: center; 
+    margin-top: 20px; 
+}
+
+
+#buyButton {
+    background-color: #fce3ed ; 
+    color:hsl(233, 94%, 7%) ;
+    border: none;
+    padding: 10px 20px; 
+    font-size: 1.2rem; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+}
+
+#buyButton:hover {
+    background-color: #ccc; 
+}
+
+.sticker-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 20px 0; 
+}
+
+.sticker {
+    width: 120px; 
+    height: auto;
+    margin: 0 60px; 
+}
+
+.sticker:first-of-type {
+    transform: translateY(-15px) rotate(-15deg); 
+}
+
+.sticker:last-of-type {
+    transform: translateY(-15px) rotate(15deg); 
+}

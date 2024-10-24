@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link id="icon" rel="icon" type="image/png" href="pics/profilogo.png">
+    <title>Account</title>
+    <link rel="stylesheet" href="account.css"/>
+</head>
+
+<body>
+    <div class="page-container">
+        <h2>Welcome Back!</h2> 
+        <p>Please Sign in to continue.</p>
+        <div class="form-container">
+            <form id="signInForm" action="#">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn-submit">Sign In</button>
+            </form>
+        </div>
+        <p>Don't have an account yet? <a href="login.html">Log In</a></p>
+    </div>
+    <script>
+        document.getElementById('signInForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            window.location.href = 'com.html'; 
+        });
+    </script>
+</body>
+
+</html>
