@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,40 +7,39 @@
     <title>BookScape</title>
     <link id="icon" rel="icon" type="image/png" href="pics/booklogo.png">
     <link rel="stylesheet" href="com.css">
-    <script src="com.js"></script>
+    <script src="com.js" defer></script>
+    <script src="cart.js" defer></script>
     <link rel="stylesheet" href="https://unpkg.com/ionicons@latest/dist/css/ionicons.min.css">
     <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
     
 </head>
 <body>
-  <div class="container"> 
-  <div class="search">
-    <input type="text" placeholder="Search by name or author">
-    <a href="Books.html"><ion-icon name="search" id="icon"></ion-icon></a>
-</div>
-</div>
+    
+    
 
     <div class="header">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <h1>BookScape</h1>
+                    <h1>BookScape </h1>
                 </div>
-                <nav>
+                <nav >
                     <ul id="MenuItems">
                         <li><a href="com.html">Home</a></li>
-                        <li><a href="Books.html">Books</a></li>
+                        <li><a href="Books.php">Books</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="account.html">Account</a></li>
+                        <li><a href="logout.php">Logout</a></li>
                     </ul>
                 </nav>
-                <a href="cart.html"><img src="https://i.ibb.co/PNjjx3y/cart.png" alt="" width="30px" height="30px" class="cart-icon" /></a>
+                
             </div>
+          
 
             <div class="row">
                 <div class="col-2">
-                    <h1 id="slogan">Welcome to the Bookaholic's Dreamland</h1>
+                    <h1 id="slogan">Welcome to the Bookaholic's Dreamland   </h1>
                     <p id="quote">"Books are the plane, and the train, and the road. They are the destination, and the journey. They are home." </p>
                     <p id="author">– Anna Quindlen –</p>
                     <a href="account.html"  class="btn">Explore Now</a>
@@ -47,7 +47,7 @@
             </div>
         </div>
     </div>
-
+   
     <div class="categories">
       <div class="small-container">
           <h1> Our Bestsellers </h1>
@@ -80,9 +80,11 @@
       </div>
   </div>
   
-
+  
+  
   <div class="small-container">
     <h1 class="title">Suggestions</h1>
+    <div><p id="intro">"Dearest gentle readers,Bookscape is a haven for lovers of rom-com,drama and self-development books . Here, you will discover a curated selection of captivating and heartfelt stories,each penned by diverse and talented authors."</p></div>
     <div class="row">
         <div class="col-3">
                 <img src="https://shakespearebookstore.com/wp-content/uploads/2023/09/9781398515642.jpg" alt="The American Roommate Experience" />
@@ -166,7 +168,7 @@
     </div>
 
     <div class="more-btn-container">
-        <a href="Books.html" class="btn-more">More</a>
+        <a href="Books.php" class="btn-more">More</a>
     </div>
 </div>
 
@@ -181,7 +183,12 @@
           <h1>It Ends With Us</h1>
           <small>A special hardcover collector’s edition of It Ends with Us—now a major motion picture—featuring an exclusive Q&A between Colleen Hoover and her mother, a beautiful foil cover, and newly designed endpapers—from the #1 New York Times bestselling author of It Starts with Us.</small>
           <br />
-          <a href="account.html" class="btn">Buy Now</a>
+         
+        
+          <button class="btn" onclick="addToCartAndCheckLogin(15)">Buy Now</button>
+
+
+        </div>
         </div>
       </div>
     </div>
@@ -249,5 +256,59 @@
       <p class="copyright">Copyright &copy; 2024 - BookScape</p>
     </div>
   </div>
+
+  <script>
+    // Fonction pour récupérer un paramètre dans l'URL
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Vérification du paramètre 'message' dans l'URL
+    const message = getUrlParameter('message');
+    if (message === 'logged_out') {
+        alert('You have successfully logged out.');
+    } else if (message === 'already_logged_out') {
+        alert('You are already logged out.');
+    }
+   
+    function addToCartAndCheckLogin(bookId) {
+        fetch('check_login.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.logged_in) {
+                  
+                    fetch('add_to_cart.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ book_id: bookId }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Book added to cart successfully!');
+                                window.location.href = 'cart.html'; // Redirige vers le panier
+                            } else {
+                                alert('Failed to add book to cart: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred while adding the book to the cart.');
+                        });
+                } else {
+                    alert('Please log in to buy this book.');
+                    window.location.href = 'account.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while checking login status.');
+            });
+    }
+   
+</script>
 </body>
 </html>

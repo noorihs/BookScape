@@ -1,146 +1,222 @@
-document.addEventListener('DOMContentLoaded', function () {
-    function showBookDetails(bookId) {
-        switch (bookId) {
-            case 'book1':
-                document.getElementById('bookTitle').innerText = 'Divine Rivals';
-                document.getElementById('bookPrice').innerText = '3200.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Divine Rivals.';
-                break;
-            case 'book2':
-                document.getElementById('bookTitle').innerText = 'Out On a Limb';
-                document.getElementById('bookPrice').innerText = '2800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Out On a Limb.';
-                break;
-            case 'book3':
-                document.getElementById('bookTitle').innerText = 'A Curse for True Love';
-                document.getElementById('bookPrice').innerText = '2500.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of A Curse for True Love.';
-                break;
-            case 'book4':
-                document.getElementById('bookTitle').innerText = 'Hopeless (Arabic version)';
-                document.getElementById('bookPrice').innerText = '2200.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Hopeless.';
-                break;
-            case 'book5':
-                document.getElementById('bookTitle').innerText = 'It Starts With Us';
-                document.getElementById('bookPrice').innerText = '3200.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of It Starts With Us.';
-                break;
-            case 'book6':
-                document.getElementById('bookTitle').innerText = 'Harry Potter and the Philosopher\'s Stone';
-                document.getElementById('bookPrice').innerText = '1800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Harry Potter and the Philosopher\'s Stone.';
-                break;
-            case 'book7':
-                document.getElementById('bookTitle').innerText = 'Atomic Habits';
-                document.getElementById('bookPrice').innerText = '$1800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Atomic Habits.';
-                break;
-            case 'book8':
-                document.getElementById('bookTitle').innerText = 'The American Roommate Experience';
-                document.getElementById('bookPrice').innerText = '2800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of The American Roommate Experience.';
-                break;
-            case 'book9':
-                document.getElementById('bookTitle').innerText = 'This Girl';
-                document.getElementById('bookPrice').innerText = '2800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of This Girl.';
-                break;
-            case 'book10':
-                document.getElementById('bookTitle').innerText = 'Final Offer';
-                document.getElementById('bookPrice').innerText = '2800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Final Offer.';
-                break;
-            case 'book11':
-                document.getElementById('bookTitle').innerText = 'Maybe Someday';
-                document.getElementById('bookPrice').innerText = '2800.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of Maybe Someday.';
-                break;
-            case 'book12':
-                document.getElementById('bookTitle').innerText = 'The Zahir';
-                document.getElementById('bookPrice').innerText = '2200.00 DZD';
-                document.getElementById('bookDescription').innerText = 'This is the description of The Zahir.';
-                break;
-            default:
-                document.getElementById('bookTitle').innerText = 'Unknown Book';
-                document.getElementById('bookPrice').innerText = '0.00 DZD';
-                document.getElementById('bookDescription').innerText = 'No description available.';
-                break;
-        }
 
-        
-        document.getElementById('bookOverlay').style.display = 'block';
-        document.getElementById('bookDetails').style.display = 'block';
+document.getElementById('searchButton').addEventListener('click', function () {
+    const query = document.getElementById('searchInput').value.trim();
+
+    if (!query) {
+        alert('Please enter a search query.');
+        return;
     }
 
-    function hideBookDetails() {
-        document.getElementById('bookOverlay').style.display = 'none';
-        document.getElementById('bookDetails').style.display = 'none';
+    resetBookDetails();
+
+    fetch('search.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: query }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const book = data.book;
+                document.getElementById('bookImage').src = book.image_url || 'default-book-image.jpg';
+                document.getElementById('bookTitle').textContent = book.title;
+                document.getElementById('bookAuthor').textContent = `Author: ${book.author}`;
+                document.getElementById('bookPrice').textContent = `${book.price} DZD`;
+                document.getElementById('bookDescription').textContent = book.description || 'No description available.';
+                document.getElementById('bookStock').textContent = `In Stock: ${book.stock || '0'}`;
+                document.getElementById('bookDetails').style.display = 'block';
+            } else {
+                alert(data.message || 'Book not found.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while searching for the book.');
+        });
+});
+
+function showBookDetails(bookId) {
+    fetch(`get_book_details.php?id=${bookId}`)
+        .then(response => response.json())
+        .then(book => {
+            if (book.error) {
+                alert(book.error);
+                return;
+            }
+            document.getElementById('bookTitle').textContent = book.title;
+            document.getElementById('bookAuthor').textContent = `Author: ${book.author}`;
+            document.getElementById('bookPrice').textContent = `${book.price} DZD`;
+            document.getElementById('bookDescription').textContent = book.description;
+            document.getElementById('bookStock').textContent = `In Stock: ${book.stock}`;
+            document.getElementById('bookImage').src = book.image_url;
+
+            fetch(`get_comments.php?book_id=${bookId}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('commentsList').innerHTML = data;
+                    document.getElementById('bookId').value = bookId;
+                });
+
+            document.getElementById('bookDetails').style.display = 'block';
+        })
+        .catch(err => console.error('Error fetching book details:', err));
+}
+
+
+
+
+// Fonction pour réinitialiser les données des détails du livre
+function resetBookDetails() {
+    document.getElementById('bookTitle').textContent = 'Loading...';
+    document.getElementById('bookAuthor').textContent = '';
+    document.getElementById('bookPrice').textContent = '';
+    document.getElementById('bookDescription').textContent = '';
+    document.getElementById('bookStock').textContent = '';
+    document.getElementById('bookImage').src = 'default-book-image.jpg';
+    document.getElementById('commentsList').innerHTML = '';
+}
+
+// Fonction pour cacher les détails du livre
+function hideBookDetails() {
+    document.getElementById('bookDetails').style.display = 'none';
+}
+
+
+    document.getElementById('addToCartBtn').addEventListener('click', function () {
+    const bookId = document.getElementById('bookId').value;
+    const bookTitle = document.getElementById('bookTitle').textContent;
+    const bookPrice = parseFloat(document.getElementById('bookPrice').textContent);
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    
+    const existingBook = cart.find(item => item.id === bookId);
+    if (existingBook) {
+        existingBook.quantity += 1; // Incrémenter la quantité
+    } else {
+        
+        cart.push({ id: bookId, title: bookTitle, price: bookPrice, quantity: 1 });
     }
 
-    window.showBookDetails = showBookDetails;
-    window.hideBookDetails = hideBookDetails;
-    document.addEventListener('DOMContentLoaded', function () {
-    const cartItemsContainer = document.getElementById('cartItems');
-    const sortingSelect = document.getElementById('sortingSelect');
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    localStorage.setItem('cart', JSON.stringify(cart)); 
+    alert(`${bookTitle} has been added to the cart.`);
+});
 
-    function sortCart(sortType) {
-        if (sortType === 'price') {
-            cart.sort((a, b) => a.price - b.price); 
-        } else if (sortType === 'popularity') {
-           
-            
-            cart.sort((a, b) => b.popularity - a.popularity); 
-        } 
-        
+function addToCartAndCheckLogin(bookId) {
+   
+    fetch('check_login.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.logged_in) {
+             
+                fetch('add_to_cart.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ book_id: bookId }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Book added to cart successfully!');
+
+                       
+                            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                            const existingBookIndex = cart.findIndex(item => item.book_id === bookId);
+
+                            if (existingBookIndex !== -1) {
+                                cart[existingBookIndex].quantity += 1;
+                            } else {
+                                cart.push({
+                                    book_id: bookId,
+                                    title: "It Ends With Us", 
+                                    price: 4500, 
+                                    quantity: 1,
+                                });
+                            }
+
+                            localStorage.setItem('cart', JSON.stringify(cart));
+                            window.location.href = 'cart.html'; 
+                        } else {
+                            alert('Failed to add book to cart: ' + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while adding the book to the cart.');
+                    });
+            } else {
+
+                alert('Please log in to buy this book.');
+                window.location.href = 'account.html';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while checking login status.');
+        });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.star');
+    let selectedRating = 0;
+
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            selectedRating = parseInt(star.getAttribute('data-value'));
+            updateStarColors(selectedRating);
+        });
+
+        star.addEventListener('mouseover', () => {
+            const hoverRating = parseInt(star.getAttribute('data-value'));
+            updateStarColors(hoverRating);
+        });
+
+        star.addEventListener('mouseout', () => {
+            updateStarColors(selectedRating);
+        });
+    });
+
+    function updateStarColors(rating) {
+        stars.forEach(star => {
+            const starValue = parseInt(star.getAttribute('data-value'));
+            if (starValue <= rating) {
+                star.classList.add('selected');
+            } else {
+                star.classList.remove('selected');
+            }
+        });
     }
 
-    function displayCart() {
-        cartItemsContainer.innerHTML = ''; 
-        
+    document.getElementById('addCommentForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const bookId = document.getElementById('bookId').value;
+        const comment = document.getElementById('comment').value;
 
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = '<tr><td colspan="5">Your cart is empty</td></tr>';
+        if (!selectedRating) {
+            alert('Please select a rating.');
             return;
         }
 
-        cart.forEach((book, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${book.name}</td>
-                <td>${book.quantity}</td>
-                <td>${book.price.toFixed(2)} DZD</td>
-                <td><button class="remove-btn" data-index="${index}">Remove</button></td>
-            `;
-            cartItemsContainer.appendChild(row);
+        const response = await fetch('add-comments.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ book_id: bookId, rating: selectedRating, comment })
         });
 
-        calculateTotals();
-        addRemoveEventListeners();
-    }
-
-    function calculateTotals() {
-        let subtotal = 0;
-        cart.forEach(book => {
-            subtotal += book.price * book.quantity;
-        });
-        const tax = 500; 
-        
-        const total = subtotal + tax;
-
-        document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} DZD`;
-        document.getElementById('tax').textContent = `${tax.toFixed(2)} DZD`;
-        document.getElementById('total').textContent = `${total.toFixed(2)} DZD`;
-    }
-
-    sortingSelect.addEventListener('change', function() {
-        const selectedValue = this.value;
-        sortCart(selectedValue); 
-        displayCart(); 
+        const data = await response.json();
+        if (data.success) {
+            alert('Comment added successfully!');
+            showBookDetails(bookId);
+        } else {
+            alert(data.message);
+        }
     });
-
-    displayCart();
 });
 
-});
+
+
+

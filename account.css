@@ -6,7 +6,7 @@
 }
 body {
     font-family: "Roboto Slab", sans-serif;
-    background-color:   #fce3ed;
+    background-color: #fce3ed;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -62,7 +62,7 @@ form input {
 }
 
 .btn-submit {
-    background: #ffffff;
+    background: #fce3ed;
     color: hsl(233, 94%, 7%);
     font-family: "Roboto Slab";
     font-size: 1rem;
