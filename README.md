@@ -1,4 +1,4 @@
-The Bookscape project aligns with this dynamic and aims to create an intuitive and functional platform for managing and purchasing books online.
+The Bookscape project aims to create an intuitive and functional platform for managing and purchasing books online.
 This site was specifically designed for book enthusiasts, particularly fans of novels, romantic comedies, and other popular genres.
 Bookscape seeks to offer a unique experience that allows users to easily explore and purchase their favorite books remotely. This initiative addresses the growing need for access to an online library where readers can discover new titles while simplifying the purchasing process without the need to travel.
 The primary goal was to develop a solution that meets users’ needs while providing efficient product management tools for administrators.
