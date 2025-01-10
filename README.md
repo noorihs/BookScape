@@ -4,13 +4,13 @@ Bookscape seeks to offer a unique experience that allows users to easily explore
 The primary goal was to develop a solution that meets users’ needs while providing efficient product management tools for administrators.
 
 1. Technologies Used
-	•	Frontend: HTML, CSS, and JavaScript were used to design a clear and responsive user interface.
-	•	Backend: PHP was chosen to handle server-side operations, such as managing users, orders, and products.
-	•	Database: MySQL was used to store information about books, users, orders, and reviews.
+•Frontend: HTML, CSS, and JavaScript were used to design a clear and responsive user interface.
+•Backend: PHP was chosen to handle server-side operations, such as managing users, orders, and products.
+•Database: MySQL was used to store information about books, users, orders, and reviews.
 
-2. Architecture
-	•	Simplified MVC Model: A separation between frontend pages and backend operations was implemented for better organization.
+3. Architecture
+•Simplified MVC Model: A separation between frontend pages and backend operations was implemented for better organization.
 
-3. Complementary Tools
-	•	Visual Studio Code: The main development environment.
-	•	PhpMyAdmin: An interface for managing the MySQL database.
+4. Complementary Tools
+•Visual Studio Code: The main development environment.
+•PhpMyAdmin: An interface for managing the MySQL database.
