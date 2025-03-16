@@ -14,3 +14,4 @@ The primary goal was to develop a solution that meets users’ needs while provi
 4. Complementary Tools
 •Visual Studio Code: The main development environment.
 •PhpMyAdmin: An interface for managing the MySQL database.
+   **RUN TO SEE MORE!**
